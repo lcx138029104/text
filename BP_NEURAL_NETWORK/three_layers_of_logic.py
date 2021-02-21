@@ -46,4 +46,4 @@ for i in range(30000):
 
 L1 = sigmoid(np.dot(X, V))
 L2 = sigmoid(np.dot(L1, W))
-print(L2)
+print(L1,L2)
