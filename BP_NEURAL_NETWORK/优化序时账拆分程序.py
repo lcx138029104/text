@@ -21,10 +21,10 @@ def Split_chronological_account(data_0, path2):
     department_list = []   # 预处理每个科目数据列表
     df_list = []  # 预处理建表名称
 
-    data2 = pd.DataFrame(data_0['一级科目'])  # 获取科目名称所在列
+    data2 = pd.DataFrame(data_0[0])  # 获取科目名称所在列
     data3 = data2.drop_duplicates(
         subset=None, keep='last', inplace=False)  # 去重
-    department_list = list(data3['一级科目'])  # 去处重复的科目名称
+    department_list = list(data3[0])  # 去处重复的科目名称
     n = len(department_list)  # 获取科目名称数量，建表预处理过程
 
     # 根据每个一级科目创建一个DataFrame
@@ -48,14 +48,12 @@ def Split_chronological_account(data_0, path2):
             writer,
             sheet_name=str(
                 department_list[i]),
-            index=False)  # 注意加上index=FALSE 去掉index列
-        print('正在导入', i)
+            index=False)  # 去掉index列
+        print('正在导入', department_list[i])
 
     writer.save()
 
-
 if __name__ == '__main__':
-    path1 = "C:/Users/Admin/Desktop/拆分.xlsx"
-    path2 = 'C:/Users/Admin/Desktop/啊啊啊啊.xlsx'
-    Split_account(path1)
+    path1 = "C:/Users/Admin/Desktop/2020序时账-轿子山.xls"
+    path2 = 'C:/Users/Admin/Desktop/asd.xlsx'
     Split_chronological_account(Split_account(path1), path2)
